@@ -41,7 +41,7 @@ module Sfsync
       @sf_sobjects = Sfsync::Sobject.order(:label).all
   
       respond_to do |format|
-        format.html  { render :layout => 'one_column' }
+        format.html
         format.json { render json: @sf_sobjects }
       end
     end

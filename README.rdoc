@@ -1,6 +1,7 @@
 = Sfsync
 
 A rails engine to sync your Salesforce Objects to your rails models.
+The purpose is efficient mass downloading of Salesforce fields into your ActiveRecord models - not one-by-one keeping objects in sync.
 
 Salesforce to rails = supported
 rails to Salesforce = not yet supported
@@ -8,7 +9,7 @@ rails to Salesforce = not yet supported
 to get started:
 
 Add to your gemfile 
-gem 'sfsync', , :git => 'https://github.com/siax84/sfsync.git'
+gem 'sfsync', :git => 'https://github.com/siax84/sfsync.git'
 
 rake sfsync:install:migrations
 rake db:migrate

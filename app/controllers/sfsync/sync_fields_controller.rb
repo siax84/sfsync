@@ -6,7 +6,7 @@ module Sfsync
       @available_fields = SobjectField.where(:sobject_name => params[:sobject]).order(:name)   
       @sync_fields = SyncField.where(:sobject => params[:sobject]).where(:sync_query_id => params[:sync_query_id])       
       respond_to do |format|
-        format.html {render :layout => 'one_column' }
+        format.html
       end
     end
   

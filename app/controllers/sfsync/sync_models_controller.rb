@@ -18,7 +18,7 @@ module Sfsync
         end
       end
       respond_to do |format|
-        format.html {render :layout => 'one_column' }
+        format.html
       end
     end  
     
