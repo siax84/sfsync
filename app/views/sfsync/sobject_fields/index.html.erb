@@ -1,0 +1,103 @@
+<h1>sf_sobject_fields <%= link_to '+', new_sf_sobject_field_path %></h1>
+
+<table class="list">
+  <tr>
+    <th>Sobject</th>
+    <th>Sobject name</th>
+    <th>Auto number</th>
+    <th>Byte length</th>
+    <th>Calculated</th>
+    <th>Calculated formula</th>
+    <th>Cascade delete</th>
+    <th>Case sensitive</th>
+    <th>Controller name</th>
+    <th>Createable</th>
+    <th>Custom</th>
+    <th>Default value</th>
+    <th>Default value formula</th>
+    <th>Defaulted on create</th>
+    <th>Dependent picklist</th>
+    <th>Deprecated and hidden</th>
+    <th>Digits</th>
+    <th>Display location in decimal</th>
+    <th>External</th>
+    <th>Filterable</th>
+    <th>Groupable</th>
+    <th>Html formatted</th>
+    <th>Id lookup</th>
+    <th>Inline help text</th>
+    <th>Label</th>
+    <th>Length</th>
+    <th>Name</th>
+    <th>Name field</th>
+    <th>Name pointing</th>
+    <th>Nillable</th>
+    <th>Permissionable</th>
+    <th>Precision</th>
+    <th>Relationship name</th>
+    <th>Relationship order</th>
+    <th>Restricted delete</th>
+    <th>Restricted picklist</th>
+    <th>Scale</th>
+    <th>Soap type</th>
+    <th>Sortable</th>
+    <th>Type</th>
+    <th>Unique</th>
+    <th>Updateable</th>
+    <th>Write requires master read</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @sf_sobject_fields.each do |sf_sobject_field| %>
+  <tr>
+    <td><%= sf_sobject_field.sobject %></td>
+    <td><%= sf_sobject_field.sobject_name %></td>
+    <td><%= sf_sobject_field.auto_number %></td>
+    <td><%= sf_sobject_field.byte_length %></td>
+    <td><%= sf_sobject_field.calculated %></td>
+    <td><%= sf_sobject_field.calculated_formula %></td>
+    <td><%= sf_sobject_field.cascade_delete %></td>
+    <td><%= sf_sobject_field.case_sensitive %></td>
+    <td><%= sf_sobject_field.controller_name %></td>
+    <td><%= sf_sobject_field.createable %></td>
+    <td><%= sf_sobject_field.custom %></td>
+    <td><%= sf_sobject_field.default_value %></td>
+    <td><%= sf_sobject_field.default_value_formula %></td>
+    <td><%= sf_sobject_field.defaulted_on_create %></td>
+    <td><%= sf_sobject_field.dependent_picklist %></td>
+    <td><%= sf_sobject_field.deprecated_and_hidden %></td>
+    <td><%= sf_sobject_field.digits %></td>
+    <td><%= sf_sobject_field.display_location_in_decimal %></td>
+    <td><%= sf_sobject_field.external_id %></td>
+    <td><%= sf_sobject_field.filterable %></td>
+    <td><%= sf_sobject_field.groupable %></td>
+    <td><%= sf_sobject_field.html_formatted %></td>
+    <td><%= sf_sobject_field.id_lookup %></td>
+    <td><%= sf_sobject_field.inline_help_text %></td>
+    <td><%= sf_sobject_field.label %></td>
+    <td><%= sf_sobject_field.length %></td>
+    <td><%= sf_sobject_field.name %></td>
+    <td><%= sf_sobject_field.name_field %></td>
+    <td><%= sf_sobject_field.name_pointing %></td>
+    <td><%= sf_sobject_field.nillable %></td>
+    <td><%= sf_sobject_field.permissionable %></td>
+    <td><%= sf_sobject_field.precision %></td>
+    <td><%= sf_sobject_field.relationship_name %></td>
+    <td><%= sf_sobject_field.relationship_order %></td>
+    <td><%= sf_sobject_field.restricted_delete %></td>
+    <td><%= sf_sobject_field.restricted_picklist %></td>
+    <td><%= sf_sobject_field.scale %></td>
+    <td><%= sf_sobject_field.soap_type %></td>
+    <td><%= sf_sobject_field.sortable %></td>
+    <td><%= sf_sobject_field.type %></td>
+    <td><%= sf_sobject_field.unique %></td>
+    <td><%= sf_sobject_field.updateable %></td>
+    <td><%= sf_sobject_field.write_requires_master_read %></td>
+    <td><%= link_to 'Zeigen', sf_sobject_field %></td>
+    <td><%= link_to 'Bearbeiten', edit_sf_sobject_field_path(sf_sobject_field) %></td>
+    <td><%= link_to 'Löschen', sf_sobject_field, method: :delete, data: { confirm: 'Sind Sie sicher, dass Sie den Datensatz löschen möchten?' } %></td>
+  </tr>
+<% end %>
+</table>

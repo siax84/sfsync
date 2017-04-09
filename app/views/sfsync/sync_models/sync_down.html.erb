@@ -1,0 +1,15 @@
+<% if params[:id] && params[:sobject] %>
+<%= @remote_sobjects.count %>Objects loaded
+<% else %>
+	<%= form_for :sync_fields, :url => sync_down_sync_model_path(@sync_model), :html => { :method => :get } do |f| %>
+	<%= label_tag 'model_id', 'Local Model' %><br />
+	<%= select_tag 'model_id', options_from_collection_for_select(Sf::SyncModel.all, :id, :model_name, :selected => params[:model_id]) %><br />
+	<%= label_tag 'where_condition', 'SOQL WHERE Condition' %><br />
+	<%= text_area_tag 'soql_where', nil, {:rows => 3, :cols => 75} %><br />	
+	<%= label 'model_id', 'Salesforce Model' %><br />
+	<%= select_tag 'sobject', options_from_collection_for_select(Sf::Sobject.where(:queryable => true).all, :name, :name, :selected => params[:sobject]) %>	
+	  <div class="actions">
+	    <%= f.submit 'Continue' %>
+	  </div>
+	<% end %>
+<% end %>

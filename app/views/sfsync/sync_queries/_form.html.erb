@@ -1,0 +1,41 @@
+<%= form_for(@sync_query, :html => {:class => 'new_pgs_group vertical', :style => 'max-width: 800px'}) do |f| %>
+  <% if @sync_query.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@sync_query.errors.count, "error") %> prohibited this sync_query from being saved:</h2>
+
+      <ul>
+      <% @sync_query.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :local_model %><br />
+    <%= f.text_field :local_model %>
+  </div>
+  <div class="field">
+    <%= f.label :sobject, 'Salesforce Object' %><br />
+    <%= f.collection_select :sobject, Sfsync::Sobject.where(:queryable => true).all, :name, :name %>
+  </div>
+   <div class="field" style="float:left;margin-right: 15px">
+    <%= f.label :created_filter, 'Created Date Filter' %><br />
+    <%= f.select :created_operator, ['', '=', '<', '<=', '>', '>='] %><%= f.text_field :created_filter, :class => "picker" %>
+    <div id="start"></div>
+  </div>
+  <div class="field" style="float:left">
+    <%= f.label :last_modified_filter, 'Last Modified Date Filter' %><br />
+    <%= f.select :last_modified_operator, ['', '=', '<', '<=', '>', '>='], {}, :include_blanks => true %><%= f.text_field :last_modified_filter, :class => "picker"  %>
+    <div id="end"></div>
+  </div>
+  <br style="clear:both" /> 
+  <div class="field">
+    <%= f.label :where_conditions %><br />
+    <%= f.text_area :where_conditions, {:cols => 50, :rows => 3} %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit 'Save' %>
+  </div>
+<% end %>

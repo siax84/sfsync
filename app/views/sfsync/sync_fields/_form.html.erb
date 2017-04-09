@@ -1,0 +1,33 @@
+<%= form_for(@sync_field) do |f| %>
+  <% if @sync_field.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@sync_field.errors.count, "error") %> prohibited this sf_sync_field from being saved:</h2>
+
+      <ul>
+      <% @sync_field.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :sobject %><br />
+    <%= f.text_field :sobject %>
+  </div>
+  <div class="field">
+    <%= f.label :sf_field_name %><br />
+    <%= f.text_field :sf_field_name %>
+  </div>
+  <div class="field">
+    <%= f.label :local_model %><br />
+    <%= f.text_field :local_model %>
+  </div>
+  <div class="field">
+    <%= f.label :local_field_name %><br />
+    <%= f.text_field :local_field_name %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

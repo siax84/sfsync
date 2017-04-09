@@ -1,0 +1,17 @@
+<h1>sync_models <%= link_to '+', new_sync_model_path %></h1>
+
+<table class="list">
+  <tr>
+    <th>Name</th>
+    <th width="200">Actions</th>
+  </tr>
+
+<% @sync_models.each do |sync_model| %>
+  <tr>
+    <td><%= sync_model.local_name %></td>
+    <td><%= link_to 'Sync Down', sync_down_sync_model_path(sync_model) %> |
+    	<%= link_to 'Bearbeiten', edit_sync_model_path(sync_model) %> |
+    	<%= link_to 'Löschen', sync_model, method: :delete, data: { confirm: 'Sind Sie sicher, dass Sie den Datensatz löschen möchten?' } %></td>
+  </tr>
+<% end %>
+</table>

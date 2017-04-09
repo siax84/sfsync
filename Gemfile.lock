@@ -1,0 +1,21 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    faraday (0.9.1)
+      multipart-post (>= 1.2, < 3)
+    faraday_middleware (0.10.0)
+      faraday (>= 0.7.4, < 0.10)
+    hashie (3.4.2)
+    json (1.8.3)
+    multipart-post (2.0.0)
+    restforce (2.1.1)
+      faraday (~> 0.9.0)
+      faraday_middleware (>= 0.8.8)
+      hashie (>= 1.2.0, < 4.0)
+      json (>= 1.7.5, < 1.9.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  restforce

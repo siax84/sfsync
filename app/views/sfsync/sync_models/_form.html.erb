@@ -1,0 +1,21 @@
+<%= form_for(@sync_model) do |f| %>
+  <% if @sync_model.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@sync_model.errors.count, "error") %> prohibited this sync_model from being saved:</h2>
+
+      <ul>
+      <% @sync_model.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :local_name %><br />
+    <%= f.text_field :local_name %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

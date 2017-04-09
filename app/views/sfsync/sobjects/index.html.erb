@@ -1,0 +1,25 @@
+<h1>sf_sobjects <%= link_to '+', new_sobject_path %></h1>
+
+<table class="list">
+  <tr>
+    <th>Label</th> 
+    <th>Custom</th>
+    <th>Deprecated and hidden</th>
+    <th>Label plural</th>
+    <th>Name</th>
+    <th style="width:200px"></th>
+  </tr>
+
+<% @sf_sobjects.each do |sf_sobject| %>
+  <tr>
+    <td><%= link_to sf_sobject.label, sf_sobject %></td>  	
+    <td><%= sf_sobject.custom %></td>
+    <td><%= sf_sobject.deprecated_and_hidden %></td>
+    <td><%= sf_sobject.label_plural %></td>
+    <td><%= link_to sf_sobject.name, sf_sobject %></td>  	
+    <td><%= link_to 'Edit', edit_sobject_path(sf_sobject) %> |
+    	<%= link_to 'Get Fields', sync_sobjects_path(:sobject => sf_sobject.name) %> |
+    	<%= link_to 'Remove', sf_sobject, method: :delete, data: { confirm: 'Sind Sie sicher, dass Sie den Datensatz löschen möchten?' } %></td>
+  </tr>
+<% end %>
+</table>

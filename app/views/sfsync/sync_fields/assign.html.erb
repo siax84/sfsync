@@ -1,0 +1,45 @@
+<% if params[:local_model] && params[:sobject] %>
+<%= form_for :sync_fields, :url => save_assigned_sync_fields_path, :html => { :method => :put } do |f| %>
+	<h1>Sync Fields With <%= @local_model %></h1>
+	<%= hidden_field_tag :local_model, @local_model %>
+	<%= hidden_field_tag :sobject, params[:sobject] %>
+	<%= hidden_field_tag :sync_query_id, params[:sync_query_id] %>
+	<table class="list">
+		<tr>
+			<th>Salesforce Field Label</th>
+			<th>Salesforce Field</th>
+			<th>Local Field</th>
+		</tr>
+	<% @available_fields.each_with_index do |field, index| %>
+	    <% if field_idx = @sync_fields.pluck(:sf_field_name).index(field.name) %>
+		<tr>
+			<td><%= field.label %></td>
+			<td><%= hidden_field_tag 'index[]', index %>
+				<%= hidden_field_tag 'sf_field_names[]', field.name %><%= field.name %></td>
+			<td><%= select_tag 'local_field_names[]', options_from_collection_for_select(@local_model.constantize.column_names.sort, :to_s, :to_s, :selected => @sync_fields.slice(field_idx).local_field_name), :include_blank => true %></td>
+		</tr>    
+	    <% else %>
+		<tr>
+			<td><%= field.label %></td>
+			<td><%= hidden_field_tag 'index[]', index %>
+				<%= hidden_field_tag 'sf_field_names[]', field.name %><%= field.name %></td>
+			<td><%= select_tag 'local_field_names[]', options_for_select(@local_model.constantize.column_names.sort), :include_blank => true %></td>
+		</tr>  
+	    <% end %>    
+	<% end %>	
+	</table>
+	  <div class="actions">
+	    <%= f.submit 'Save' %>
+	  </div>
+	<% end %>
+<% else %>
+	<%= form_for :sync_fields, :url => assign_sync_fields_path, :html => { :method => :get } do |f| %>
+	<%= label 'model_id', 'Local Model' %><br />
+	<%= select_tag 'model_id', options_from_collection_for_select(Sfsync::SyncModel.all, :id, :local_name, :selected => params[:model_id]) %><br />
+	<%= label 'model_id', 'Salesforce Model' %><br />
+	<%= select_tag 'sobject', options_from_collection_for_select(Sfsync::Sobject.where(:queryable => true).all, :name, :name, :selected => params[:sobject]) %>	
+	  <div class="actions">
+	    <%= f.submit 'Continue' %>
+	  </div>
+	<% end %>
+<% end %>

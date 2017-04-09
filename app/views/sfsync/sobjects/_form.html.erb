@@ -1,0 +1,105 @@
+<%= form_for(@sf_sobject) do |f| %>
+  <% if @sf_sobject.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@sf_sobject.errors.count, "error") %> prohibited this sf_sobject from being saved:</h2>
+
+      <ul>
+      <% @sf_sobject.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :createable %><br />
+    <%= f.check_box :createable %>
+  </div>
+  <div class="field">
+    <%= f.label :custom %><br />
+    <%= f.check_box :custom %>
+  </div>
+  <div class="field">
+    <%= f.label :custom_setting %><br />
+    <%= f.check_box :custom_setting %>
+  </div>
+  <div class="field">
+    <%= f.label :deletable %><br />
+    <%= f.check_box :deletable %>
+  </div>
+  <div class="field">
+    <%= f.label :deprecated_and_hidden %><br />
+    <%= f.check_box :deprecated_and_hidden %>
+  </div>
+  <div class="field">
+    <%= f.label :feed_enabled %><br />
+    <%= f.check_box :feed_enabled %>
+  </div>
+  <div class="field">
+    <%= f.label :key_prefix %><br />
+    <%= f.text_field :key_prefix %>
+  </div>
+  <div class="field">
+    <%= f.label :label %><br />
+    <%= f.text_field :label %>
+  </div>
+  <div class="field">
+    <%= f.label :label_plural %><br />
+    <%= f.text_field :label_plural %>
+  </div>
+  <div class="field">
+    <%= f.label :layoutable %><br />
+    <%= f.check_box :layoutable %>
+  </div>
+  <div class="field">
+    <%= f.label :listviewable %><br />
+    <%= f.check_box :listviewable %>
+  </div>
+  <div class="field">
+    <%= f.label :lookup_layoutable %><br />
+    <%= f.check_box :lookup_layoutable %>
+  </div>
+  <div class="field">
+    <%= f.label :mergeable %><br />
+    <%= f.check_box :mergeable %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :queryable %><br />
+    <%= f.check_box :queryable %>
+  </div>
+  <div class="field">
+    <%= f.label :replicateable %><br />
+    <%= f.check_box :replicateable %>
+  </div>
+  <div class="field">
+    <%= f.label :retrieveable %><br />
+    <%= f.check_box :retrieveable %>
+  </div>
+  <div class="field">
+    <%= f.label :search_layoutable %><br />
+    <%= f.check_box :search_layoutable %>
+  </div>
+  <div class="field">
+    <%= f.label :searchable %><br />
+    <%= f.check_box :searchable %>
+  </div>
+  <div class="field">
+    <%= f.label :triggerable %><br />
+    <%= f.check_box :triggerable %>
+  </div>
+  <div class="field">
+    <%= f.label :undeletable %><br />
+    <%= f.check_box :undeletable %>
+  </div>
+  <div class="field">
+    <%= f.label :updateable %><br />
+    <%= f.check_box :updateable %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

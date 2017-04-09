@@ -1,0 +1,25 @@
+<h1>Sync Fields <%= link_to '+', new_sync_field_path %></h1>
+
+<table class="list">
+  <tr>
+    <th>Sobject</th>
+    <th>Sf field name</th>
+    <th>Local model</th>
+    <th>Local field name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @sync_fields.each do |sync_field| %>
+  <tr>
+    <td><%= sync_field.sobject %></td>
+    <td><%= sync_field.sf_field_name %></td>
+    <td><%= sync_field.local_model %></td>
+    <td><%= sync_field.local_field_name %></td>
+    <td><%= link_to 'Zeigen', sync_field %></td>
+    <td><%= link_to 'Bearbeiten', edit_sync_field_path(sync_field) %></td>
+    <td><%= link_to 'Löschen', sync_field, method: :delete, data: { confirm: 'Sind Sie sicher, dass Sie den Datensatz löschen möchten?' } %></td>
+  </tr>
+<% end %>
+</table>

@@ -1,0 +1,17 @@
+<p><b>Local model:</b> <%= @sync_query.local_model %></p>
+
+<p><b>Sobject:</b> <%= @sync_query.sobject %></p>
+
+<p><b>Where conditions:</b> <%= @sync_query.where_conditions %></p>
+
+<p><b>Created filter:</b> <%= @sync_query.created_filter %></p>
+
+<p><b>Created operator:</b> <%= @sync_query.created_operator %></p>
+
+<p><b>Last modified filter:</b> <%= @sync_query.last_modified_filter %></p>
+
+<p><b>Last modified operator:</b> <%= @sync_query.last_modified_operator %></p>
+
+
+<%= link_to 'Edit', edit_sync_query_path(@sync_query) %> |
+<%= link_to 'Back', sync_queries_path %>

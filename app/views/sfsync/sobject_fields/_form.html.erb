@@ -1,0 +1,189 @@
+<%= form_for(@sf_sobject_field) do |f| %>
+  <% if @sf_sobject_field.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@sf_sobject_field.errors.count, "error") %> prohibited this sf_sobject_field from being saved:</h2>
+
+      <ul>
+      <% @sf_sobject_field.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :sobject %><br />
+    <%= f.text_field :sobject %>
+  </div>
+  <div class="field">
+    <%= f.label :sobject_name %><br />
+    <%= f.text_field :sobject_name %>
+  </div>
+  <div class="field">
+    <%= f.label :auto_number %><br />
+    <%= f.check_box :auto_number %>
+  </div>
+  <div class="field">
+    <%= f.label :byte_length %><br />
+    <%= f.number_field :byte_length %>
+  </div>
+  <div class="field">
+    <%= f.label :calculated %><br />
+    <%= f.check_box :calculated %>
+  </div>
+  <div class="field">
+    <%= f.label :calculated_formula %><br />
+    <%= f.text_area :calculated_formula %>
+  </div>
+  <div class="field">
+    <%= f.label :cascade_delete %><br />
+    <%= f.check_box :cascade_delete %>
+  </div>
+  <div class="field">
+    <%= f.label :case_sensitive %><br />
+    <%= f.check_box :case_sensitive %>
+  </div>
+  <div class="field">
+    <%= f.label :controller_name %><br />
+    <%= f.text_field :controller_name %>
+  </div>
+  <div class="field">
+    <%= f.label :createable %><br />
+    <%= f.check_box :createable %>
+  </div>
+  <div class="field">
+    <%= f.label :custom %><br />
+    <%= f.check_box :custom %>
+  </div>
+  <div class="field">
+    <%= f.label :default_value %><br />
+    <%= f.text_field :default_value %>
+  </div>
+  <div class="field">
+    <%= f.label :default_value_formula %><br />
+    <%= f.text_field :default_value_formula %>
+  </div>
+  <div class="field">
+    <%= f.label :defaulted_on_create %><br />
+    <%= f.check_box :defaulted_on_create %>
+  </div>
+  <div class="field">
+    <%= f.label :dependent_picklist %><br />
+    <%= f.check_box :dependent_picklist %>
+  </div>
+  <div class="field">
+    <%= f.label :deprecated_and_hidden %><br />
+    <%= f.check_box :deprecated_and_hidden %>
+  </div>
+  <div class="field">
+    <%= f.label :digits %><br />
+    <%= f.number_field :digits %>
+  </div>
+  <div class="field">
+    <%= f.label :display_location_in_decimal %><br />
+    <%= f.check_box :display_location_in_decimal %>
+  </div>
+  <div class="field">
+    <%= f.label :external_id %><br />
+    <%= f.check_box :external_id %>
+  </div>
+  <div class="field">
+    <%= f.label :filterable %><br />
+    <%= f.check_box :filterable %>
+  </div>
+  <div class="field">
+    <%= f.label :groupable %><br />
+    <%= f.check_box :groupable %>
+  </div>
+  <div class="field">
+    <%= f.label :html_formatted %><br />
+    <%= f.check_box :html_formatted %>
+  </div>
+  <div class="field">
+    <%= f.label :id_lookup %><br />
+    <%= f.check_box :id_lookup %>
+  </div>
+  <div class="field">
+    <%= f.label :inline_help_text %><br />
+    <%= f.text_area :inline_help_text %>
+  </div>
+  <div class="field">
+    <%= f.label :label %><br />
+    <%= f.text_field :label %>
+  </div>
+  <div class="field">
+    <%= f.label :length %><br />
+    <%= f.number_field :length %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :name_field %><br />
+    <%= f.check_box :name_field %>
+  </div>
+  <div class="field">
+    <%= f.label :name_pointing %><br />
+    <%= f.check_box :name_pointing %>
+  </div>
+  <div class="field">
+    <%= f.label :nillable %><br />
+    <%= f.check_box :nillable %>
+  </div>
+  <div class="field">
+    <%= f.label :permissionable %><br />
+    <%= f.check_box :permissionable %>
+  </div>
+  <div class="field">
+    <%= f.label :precision %><br />
+    <%= f.number_field :precision %>
+  </div>
+  <div class="field">
+    <%= f.label :relationship_name %><br />
+    <%= f.text_field :relationship_name %>
+  </div>
+  <div class="field">
+    <%= f.label :relationship_order %><br />
+    <%= f.text_field :relationship_order %>
+  </div>
+  <div class="field">
+    <%= f.label :restricted_delete %><br />
+    <%= f.check_box :restricted_delete %>
+  </div>
+  <div class="field">
+    <%= f.label :restricted_picklist %><br />
+    <%= f.check_box :restricted_picklist %>
+  </div>
+  <div class="field">
+    <%= f.label :scale %><br />
+    <%= f.number_field :scale %>
+  </div>
+  <div class="field">
+    <%= f.label :soap_type %><br />
+    <%= f.text_field :soap_type %>
+  </div>
+  <div class="field">
+    <%= f.label :sortable %><br />
+    <%= f.check_box :sortable %>
+  </div>
+  <div class="field">
+    <%= f.label :type %><br />
+    <%= f.text_field :type %>
+  </div>
+  <div class="field">
+    <%= f.label :unique %><br />
+    <%= f.check_box :unique %>
+  </div>
+  <div class="field">
+    <%= f.label :updateable %><br />
+    <%= f.check_box :updateable %>
+  </div>
+  <div class="field">
+    <%= f.label :write_requires_master_read %><br />
+    <%= f.check_box :write_requires_master_read %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,11 @@
+<p><b>Sobject:</b> <%= @sf_sync_field.sobject %></p>
+
+<p><b>Sf field name:</b> <%= @sf_sync_field.sf_field_name %></p>
+
+<p><b>Local model:</b> <%= @sf_sync_field.local_model %></p>
+
+<p><b>Local field name:</b> <%= @sf_sync_field.local_field_name %></p>
+
+
+<%= link_to 'Bearbeiten', edit_sf_sync_field_path(@sf_sync_field) %> |
+<%= link_to 'Zurück', sf_sync_fields_path %>
