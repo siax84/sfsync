@@ -1,3 +1,20 @@
 = Sfsync
 
-This project rocks and uses MIT-LICENSE.
+A rails engine to sync your Salesforce Objects to your rails models.
+
+Salesforce to rails = supported
+rails to Salesforce = not yet supported
+
+to get started:
+
+Add to your gemfile 
+gem 'sfsync', , :git => 'https://github.com/siax84/sfsync.git'
+
+rake sfsync:install:migrations
+rake db:migrate
+
+Add to your config/routes.rb
+mount Sfsync::Engine => '/sfsync'
+
+
+ 
