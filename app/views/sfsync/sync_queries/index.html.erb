@@ -4,10 +4,8 @@
   <tr>
     <th>Local model</th>
     <th>Sobject</th>
-    <th>Where conditions</th>
-    <th>Created filter</th>
-    <th>Last modified filter</th>
-    <th width="250">Actions</th>
+    <th style="max-width: 40%">Where conditions</th>
+    <th>Actions</th>
   </tr>
 
 <% @sync_queries.each do |sync_query| %>
@@ -15,12 +13,12 @@
     <td><%= sync_query.local_model %></td>
     <td><%= sync_query.sobject %></td>
     <td><%= sync_query.where_conditions %></td>
-    <td><%= sync_query.created_operator %><%= sync_query.created_filter %></td>
-    <td><%= sync_query.last_modified_filter %><%= sync_query.last_modified_operator %></td>
-    <td><%= link_to 'Map Fields', assign_sync_fields_path(:local_model => sync_query.local_model, :sobject => sync_query.sobject, :sync_query_id => sync_query.id) %> |
-    <%= link_to 'Edit', edit_sync_query_path(sync_query) %> |
+    <td>
+    	<%= link_to 'Map Fields', assign_sync_fields_path(:local_model => sync_query.local_model, :sobject => sync_query.sobject, :sync_query_id => sync_query.id) %> |
         <%= link_to 'Sync Down', sync_down_sync_query_path(sync_query), data: { confirm: "This will download all mapped fields from Salesforce #{sync_query.sobject} object into local #{sync_query.local_model} model. PLEASE BE PATIENT." } %> |
-    <%= link_to 'Delete', sync_query, method: :delete, data: { confirm: 'Are you sure you want to delete this query?' } %></td>
+        <%= link_to 'List differences', resolve_sync_query_path(sync_query) %> | 
+    	<%= link_to 'Edit', edit_sync_query_path(sync_query) %> |        
+    	<%= link_to 'Delete', sync_query, method: :delete, data: { confirm: 'Are you sure you want to delete this query?' } %></td>
   </tr>
 <% end %>
 </table>

@@ -38,6 +38,7 @@ module Sfsync
     # GET /sf/sobjects
     # GET /sf/sobjects.json
     def index
+      @title = 'Salesforce Objects'
       @sf_sobjects = Sfsync::Sobject.order(:label).all
   
       respond_to do |format|

@@ -1,0 +1,45 @@
+<h2>Compare mapped values with Salesforce</h2><br />
+<h3><%= @local_object %></h3>
+<% remote_modified_at = Time.zone.parse(@remote_object.LastModifiedDate) %>
+<%= form_tag merge_sync_query_url, :remote => true do  %>
+<%= hidden_field_tag 'merge', 'true' %>
+<%= hidden_field_tag 'local_object_id', @local_object.id %>
+<%= hidden_field_tag 'previous_id', params[:previous_id] %>
+<%= hidden_field_tag 'next_id', params[:next_id] %>
+<p>
+Salesforce updated at: <%= remote_modified_at %>
+<br />
+Directory updated at: <%= @local_object.updated_at %>
+</p>
+<table class="striped">
+	<thead>
+		<tr>
+			<th>Salesforce Field</th>
+			<th>Local Field</th>
+			<th></th>		
+			<th style="width: 20%">Salesforce Value</th>
+			<th></th>
+			<th style="width: 20%">Local Value</th>
+			<th>Newer?</th>			
+		</tr>
+	</thead>
+<tbody>
+<% @sync_fields.each do |field| %>
+<% if different = @diff_fields.include?(field.local_name) %>
+<tr class="sf_diff">	
+<% else %>
+<tr>	
+<% end %>	
+	<td><%= field.remote_name %></td>
+	<td><%= field.local_name %></td>
+	<td><%= radio_button_tag "sync_field_keep-#{field.id}", 'remote' if different %></td>			
+	<td><%= @remote_object[field.remote_name] %></td>
+	<td><%= radio_button_tag "sync_field_keep-#{field.id}", 'local' if different %></td>	
+	<td><%= @local_object[field.local_name] %></td>
+	<td><%= remote_modified_at > @local_object['updated_at'] ? 'SF' : 'Local' if different %></td>	
+</tr>
+<% end %>
+</tbody>
+</table>
+<%= submit_tag 'Merge', :name => 'merge_and_view' %>
+<% end %>

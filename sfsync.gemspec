@@ -7,8 +7,8 @@ require "sfsync/version"
 Gem::Specification.new do |s|
   s.name        = "sfsync"
   s.version     = Sfsync::VERSION
-  s.authors     = [""]
-  s.email       = [""]
+  s.authors     = ["Simon Kufferath"]
+  s.email       = ["s.kufferath@ifoam.bio"]
   s.homepage    = "http://www.ifoam.bio"
   s.summary     = "Sync your ActiveRecord Models with Salesforce Models"
   s.description = "Description of Sfsync."
@@ -18,6 +18,6 @@ Gem::Specification.new do |s|
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency "rails", "~> 4.2.4"
-  s.add_dependency "restforce"  
+  s.add_dependency "restforce", "~> 3.1.0"
 
 end

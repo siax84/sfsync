@@ -4,6 +4,9 @@ Sfsync::Engine.routes.draw do
   resources :sync_queries do
     member do
       get :sync_down
+      get :compare      
+      get :resolve      
+      post :merge
     end
   end    
   resources :sync_models do

@@ -1,0 +1,24 @@
+<h2>Records different than in Salesforce</h2>
+<table class="striped">
+	<thead>
+		<tr>
+			<th>Local Object</th>
+			<th>Salesforce Object</th>
+			<th>Differences</th>
+			<th></th>	
+		</tr>
+	</thead>
+<% if @list.any? %>
+<%= @list.count %> Need to be checked
+<% @list.each_with_index do |item, index| %>
+<% previous_id = @list[index-1][0].id unless index == 0 %>
+<% next_id = @list[index+1][0].id unless index == @list.count-1 %>
+<tr>
+	<td><%= item[0] ? link_to(item[0], main_app.polymorphic_path(item[0])) : nil %></td>
+	<td><%= item[0] ? link_to(item[0].sf_id, "https://na87.salesforce.com/#{item[0].sf_id}", :target => '_blank') : nil %></td>
+	<td><%= item[1] %></td>
+	<td><%= link_to(compare_sync_query_path(@sync_query, :local_object_id => item[0].id), :class => 'lightbox', :remote => true) do %><i class="fa fa-edit"></i><% end %></td>
+</tr>
+<% end %>
+<% end %>
+</table>

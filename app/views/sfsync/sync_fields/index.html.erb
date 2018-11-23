@@ -5,8 +5,8 @@
     <th>Sobject</th>
     <th>Sf field name</th>
     <th>Local model</th>
-    <th>Local field name</th>
-    <th></th>
+    <th>Local field name</th>    
+    <th>Sync Query</th>
     <th></th>
     <th></th>
   </tr>
@@ -17,7 +17,7 @@
     <td><%= sync_field.sf_field_name %></td>
     <td><%= sync_field.local_model %></td>
     <td><%= sync_field.local_field_name %></td>
-    <td><%= link_to 'Zeigen', sync_field %></td>
+    <td><%= sync_field.sync_query %></td>
     <td><%= link_to 'Bearbeiten', edit_sync_field_path(sync_field) %></td>
     <td><%= link_to 'Löschen', sync_field, method: :delete, data: { confirm: 'Sind Sie sicher, dass Sie den Datensatz löschen möchten?' } %></td>
   </tr>
