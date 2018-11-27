@@ -43,8 +43,9 @@ configure restforce to connect with your Salesforce instance:
       config.api_version = "32.0"
     end
 
-Navigate to <u>/sfsync/sobjects</u> and use the "Retrieve from Salesforce" button. This will download all information about your Salesforce Objects & Fields into the local database. <b>This can take a while!</b> especially when you run it for the first time.
-Navigate to <u>/sfsync/sync_queries</u> and use the "Add query" link to create a new sync query. If Restforce was configured correctly, the Salesforce objects should be listed in a dropdown menu. Fill in the name of your local object, e.g. "MyModule::Contact" and select a Salesforce Object from the dropdown menu. 
+Navigate to <b>/sfsync/sobjects</b> and use the "Retrieve from Salesforce" button. This will download all information about your Salesforce Objects & Fields into the local database. <b>This can take a while!</b> especially when you run it for the first time.
+
+Navigate to <b>/sfsync/sync_queries</b> and use the "Add query" link to create a new sync query. If Restforce was configured correctly, the Salesforce objects should be listed in a dropdown menu. Fill in the name of your local object, e.g. "MyModule::Contact" and select a Salesforce Object from the dropdown menu. 
 
 Create / Last modified date filters have no function yet
 
