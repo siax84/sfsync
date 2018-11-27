@@ -181,7 +181,7 @@ module Sfsync
         # Use callbacks to share common setup or constraints between actions.
         
         def sync_sf_to_local(sync_query, sync_fields, remote_sobject, force = false)
-          local_object = sync_query.local_model.constantize.find_or_create_by(:sf_id => remote_sobject.Id)
+          local_object = sync_query.local_model.constantize.find_or_initialize_by(:sf_id => remote_sobject.Id)
           # Sync only if the Salesforce object is newer than the local object 
           unless force == true
             diff = different?(local_object, remote_sobject, sync_fields)
