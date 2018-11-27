@@ -1,10 +1,16 @@
 = Sfsync
 
-A rails engine to sync your Salesforce Objects to your rails models.
-The purpose is efficient mass downloading of Salesforce fields into your ActiveRecord models - not one-by-one keeping objects in sync.
+A rails engine to sync your Salesforce Objects to your ActiveRecord models.
 
-Salesforce to rails = supported
-rails to Salesforce = not yet supported
+Key features:
+- Query Salesforce with SOQL conditions
+- Map Salesforce fields to ActiveRecord attributes
+- List differences between Salesforce objects and ActiveRecord objects
+- Resolve conflicts, by merging individual records
+
+
+Salesforce to rails = supported for mass updating
+rails to Salesforce = supported only for merging single records
 
 to get started:
 
@@ -14,8 +20,34 @@ gem 'sfsync', :git => 'https://github.com/siax84/sfsync.git'
 rake sfsync:install:migrations
 rake db:migrate
 
+<b>The engine expects an "sf_id" column of type string/varchar in each model that you want to synchronize.</b>
+
+Generate a migration file for your model:
+
+rails g migration AddSfIdToMyModel
+content should be 
+    add_column :my_models, :sf_id, :string
+    add_index :my_models, :sf_id
+
 Add to your config/routes.rb
 mount Sfsync::Engine => '/sfsync'
 
+configure restforce to connect with your Salesforce instance:
 
+    Restforce.configure do |config|
+      config.username = ''
+      config.password = ''
+      config.security_token = ''
+      config.client_id = ''
+      config.client_secret  = ''
+      config.api_version = "32.0"
+    end
+
+navigate to /sfsync/sync_queries and use the + link to create a new sync query. If Restforce was configured correctly, the Salesforce objects should be listed in a dropdown menu. Fill in the name of your local object, e.g. "MyModule::Contact" and select a Salesforce Object from the dropdown menu. 
+
+Create / Last modified date filters have no function yet
+
+WHERE conditions field must not be empty. Most simple solution would be "Name IS NOT NULL"
+
+After saving the form you'll be able to use the "Map fields" link next to your sync query. Map your local attributes to Salesforce fields and save. When this is done you can use the "list differences" or "sync down" links.
  
