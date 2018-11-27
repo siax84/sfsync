@@ -20,6 +20,15 @@ gem 'sfsync', :git => 'https://github.com/siax84/sfsync.git'
 rake sfsync:install:migrations
 rake db:migrate
 
+<b>The engine expects an "sf_id" column of type string/varchar in each model that you want to synchronize.</b>
+
+Generate a migration file for your model:
+
+rails g migration AddSfIdToMyModel
+content should be 
+    add_column :my_models, :sf_id, :string
+    add_index :my_models, :sf_id
+
 Add to your config/routes.rb
 mount Sfsync::Engine => '/sfsync'
 
