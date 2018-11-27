@@ -1,3 +1,12 @@
+<script>
+function check_all(class_name) {
+	var el_collection=$('.' + class_name)
+    for (var i =0; i < el_collection.length; i++) 
+    {
+        el_collection[i].checked = true;
+    }
+ }
+</script>
 <h2>Compare mapped values with Salesforce</h2><br />
 <h3><%= @local_object %></h3>
 <% remote_modified_at = Time.zone.parse(@remote_object.LastModifiedDate) %>
@@ -16,9 +25,9 @@ Directory updated at: <%= @local_object.updated_at %>
 		<tr>
 			<th>Salesforce Field</th>
 			<th>Local Field</th>
-			<th></th>		
+			<th><%= radio_button_tag 'check_all', 'keep_remote', false %></th>		
 			<th style="width: 20%">Salesforce Value</th>
-			<th></th>
+			<th><%= radio_button_tag 'check_all', 'keep_local', false %></th>
 			<th style="width: 20%">Local Value</th>
 			<th>Newer?</th>			
 		</tr>
@@ -32,9 +41,9 @@ Directory updated at: <%= @local_object.updated_at %>
 <% end %>	
 	<td><%= field.remote_name %></td>
 	<td><%= field.local_name %></td>
-	<td><%= radio_button_tag "sync_field_keep-#{field.id}", 'remote' if different %></td>			
+	<td><%= radio_button_tag "sync_field_keep-#{field.id}", 'remote', nil, :class => 'keep_remote' if different %></td>			
 	<td><%= @remote_object[field.remote_name] %></td>
-	<td><%= radio_button_tag "sync_field_keep-#{field.id}", 'local' if different %></td>	
+	<td><%= radio_button_tag "sync_field_keep-#{field.id}", 'local', nil, :class => 'keep_local' if different %></td>	
 	<td><%= @local_object[field.local_name] %></td>
 	<td><%= remote_modified_at > @local_object['updated_at'] ? 'SF' : 'Local' if different %></td>	
 </tr>
@@ -43,3 +52,13 @@ Directory updated at: <%= @local_object.updated_at %>
 </table>
 <%= submit_tag 'Merge', :name => 'merge_and_view' %>
 <% end %>
+<script>
+$(document).on("click", "#check_all_keep_remote", function () {
+	  check_all('keep_remote');
+	  $('#check_all_local_'.checked=false)
+});
+$(document).on("click", "#check_all_keep_local", function () {
+	  check_all('keep_local');
+	  $('#check_all_remote_'.checked=false);
+}); 	 	
+</script>
