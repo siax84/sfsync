@@ -1,3 +1,4 @@
+<%= render 'sfsync/shared/links' %>
 <% if params[:local_model] && params[:sobject] %>
 <%= form_for :sync_fields, :url => save_assigned_sync_fields_path, :html => { :method => :put } do |f| %>
 	<h1>Sync Fields With <%= @local_model %></h1>

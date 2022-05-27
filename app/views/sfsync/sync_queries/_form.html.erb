@@ -20,6 +20,13 @@
     <%= f.text_field :local_model %>
   </div>
   <div class="field">
+    <%= f.label :batch_size %><br />
+    <%= f.text_field :batch_size %>
+  </div>
+  <div class="field">
+    <%= f.check_box :query_all %><%= f.label :query_all, 'Query all records, including soft-deleted and archived' %>      	
+  </div>
+  <div class="field">
     <%= f.label :sobject, 'Salesforce Object' %><br />
     <%= f.collection_select :sobject, Sfsync::Sobject.where(:queryable => true).all, :name, :name %>
   </div>

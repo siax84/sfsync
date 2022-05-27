@@ -1,24 +1,45 @@
-<h2>Records different than in Salesforce</h2>
-<table class="striped">
+<%= render 'sfsync/shared/links' %>
+<h2 class="h2">Records different than in Salesforce</h2>
+<table class="table table-striped">
 	<thead>
 		<tr>
+			<th>LastMod</th>
 			<th>Local Object</th>
+			<th>Account</th>
+			<th>LastMod</th>			
 			<th>Salesforce Object</th>
 			<th>Differences</th>
 			<th></th>	
+			<th></th>
 		</tr>
 	</thead>
 <% if @list.any? %>
-<%= @list.count %> Need to be checked
+<tbody>
+<%= @list.size %> Need to be checked
 <% @list.each_with_index do |item, index| %>
 <% previous_id = @list[index-1][0].id unless index == 0 %>
 <% next_id = @list[index+1][0].id unless index == @list.count-1 %>
 <tr>
+	<td><%= l item[0].updated_at, :format => :date_and_time %></td>
 	<td><%= item[0] ? link_to(item[0], main_app.polymorphic_path(item[0])) : nil %></td>
-	<td><%= item[0] ? link_to(item[0].sf_id, "https://na87.salesforce.com/#{item[0].sf_id}", :target => '_blank') : nil %></td>
+	<% if @has_affiliate && item[0].sf_account_id.starts_with?('signup') %>
+	<td><%= item[0].affiliate %></td>
+	<% elsif @has_affiliate %>
+	<td><%= item[0] ? link_to(item[0].affiliate, "https://ifoam.my.salesforce.com/#{item[0].sf_account_id}", :target => '_blank') : nil %></td>
+	<% else %>
+	<td>-</td>
+	<% end %>
+	<td><%= l Time.parse(item[2]), :format => :date_and_time unless item[2].nil? %></td>
+	<% if item[0].sf_id.blank? || item[0].sf_id.starts_with?('signup') %>
+	<td><%= item[0].sf_id %></td>
+	<% else %>
+	<td><%= item[0] ? link_to(item[0].sf_id, "https://ifoam.my.salesforce.com/#{item[0].sf_id}", :target => '_blank') : nil %></td>
+	<% end %>
 	<td><%= item[1] %></td>
-	<td><%= link_to(compare_sync_query_path(@sync_query, :local_object_id => item[0].id), :class => 'lightbox', :remote => true) do %><i class="fa fa-edit"></i><% end %></td>
+	<td><%= link_to(compare_sync_query_path(@sync_query, :local_object_id => item[0].id), :class => 'lightbox', id: "merge#{item[0].id}", :remote => true) do %><i class="fas fa-edit"></i><% end %></td>
+	<td><%= link_to 'Delete', polymorphic_delete_sync_query_path(item[0], :class => item[0].class), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'delete_local_object', :remote => true unless item[0].in_sf? %></td>
 </tr>
 <% end %>
+</tbody>
 <% end %>
 </table>

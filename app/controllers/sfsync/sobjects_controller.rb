@@ -14,8 +14,10 @@ module Sfsync
         sobject_in_db = Sfsync::Sobject.find_or_initialize_by(:name => sobject)
         attributes = client.describe(sobject)      
         attributes.each do |key_value|
-          unless ['fields', 'childRelationships', 'recordTypeInfos', 'urls', 'actionOverrides', 'compactLayoutable', 
-            'namedLayoutInfos', 'encrypted'].include?(key_value[0])
+          unless ['fields', 'childRelationships', 'recordTypeInfos', 'urls', 'actionOverrides', 'compactLayoutable','namedLayoutInfos', 'encrypted', 'sobjectDescribeOption', 
+             'deepCloneable', 'defaultImplementation', 'extendedBy', 'extendsInterfaces', 'hasSubtypes', 'implementedBy', 'implementsInterfaces', 'isInterface', 'isSubtype', 
+             'mruEnabled', 'networkScopeFieldName', 'supportedScopes', 'aggregatable', ''].include?(key_value[0])
+             #puts key_value[1]
             sobject_in_db["#{key_value[0].underscore}"] = key_value[1] 
           end          
         end
@@ -23,7 +25,8 @@ module Sfsync
         attributes.fields.each do |field|
           field_in_db = Sfsync::SobjectField.find_or_initialize_by(:sobject_name => sobject, :name => field.name)
           field.each do |key_value|
-            unless ['picklistValues', 'referenceTo', 'encrypted', 'extraTypeInfo', 'filteredLookupInfo', 'mask', 'maskType', 'queryByDistance', 'referenceTargetField'].include?(key_value[0])
+            unless ['deep_cloneable', 'picklistValues', 'referenceTo', 'encrypted', 'extraTypeInfo', 'filteredLookupInfo', 'mask', 'maskType', 'queryByDistance', 'referenceTargetField', 'aggregatable', 
+              'aiPredictionField', 'compoundFieldName', 'formulaTreatNullNumberAsZero', 'highScaleNumber', 'polymorphicForeignKey', 'searchPrefilterable'].include?(key_value[0])
               field_in_db["#{key_value[0].underscore}"] = key_value[1] 
             end
           end

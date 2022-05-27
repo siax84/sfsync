@@ -1,4 +1,4 @@
 module Sfsync
-  module ApplicationHelper
+  module ApplicationHelper       
   end
 end

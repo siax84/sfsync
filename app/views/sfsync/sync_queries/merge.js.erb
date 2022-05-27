@@ -1,1 +1,7 @@
+<% if @errors %>
+$('.merge_notice').html('<%= @errors.join %>');
+$('.merge_notice').show();
+<% else %>
 $.fancybox.close();
+$('#merge<%= @local_object.id %>').closest('tr').css('background', 'rgba(0,255,0,0.5)');
+<% end %>

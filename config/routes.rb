@@ -7,6 +7,7 @@ Sfsync::Engine.routes.draw do
       get :compare      
       get :resolve      
       post :merge
+      delete :polymorphic_delete
     end
   end    
   resources :sync_models do

@@ -1,13 +1,16 @@
-<h1>Sync Queries <%= link_to '+', new_sync_query_path %></h1>
-
-<table class="list">
+<%= render 'sfsync/shared/links' %>
+<h1>Sync Queries</h1>
+<%= link_to 'Add query', new_sync_query_path, :class => 'button' %>
+<table class="table table-striped">
+<thead>
   <tr>
     <th>Local model</th>
     <th>Sobject</th>
-    <th style="max-width: 40%">Where conditions</th>
+    <th style="max-width: 40%">Conditions</th>
     <th>Actions</th>
   </tr>
-
+</thead>
+<tbody>
 <% @sync_queries.each do |sync_query| %>
   <tr>
     <td><%= sync_query.local_model %></td>
@@ -21,4 +24,5 @@
     	<%= link_to 'Delete', sync_query, method: :delete, data: { confirm: 'Are you sure you want to delete this query?' } %></td>
   </tr>
 <% end %>
+</tbody>
 </table>
